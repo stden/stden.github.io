@@ -11,7 +11,8 @@ var gulp = require('gulp'),
     spritesmith = require('gulp.spritesmith'),
     notify = require("gulp-notify"),
     gulpif = require('gulp-if'),
-    rename = require("gulp-rename");
+    rename = require("gulp-rename"),
+    gutil = require("gulp-util");
 
 var path = {
     build: { //Тут мы укажем куда складывать готовые после сборки файлы
@@ -45,7 +46,7 @@ gulp.task('js:build', function () {
         .pipe(gulpif(prod, uglify())) //Сожмем наш js
         .pipe(gulpif(sm, sourcemaps.write())) //Пропишем карты
         .pipe(gulp.dest(path.build.js)) //Выплюнем готовый файл в build
-        .pipe(notify("JS compiled: <%= file.relative %>!"));
+        .pipe(gutil.env.type !== 'ci' ? notify("JS compiled: <%= file.relative %>!") : gutil.noop());
 });
 
 gulp.task('style:build', function () {
@@ -56,7 +57,7 @@ gulp.task('style:build', function () {
         .pipe(gulpif(prod, cssmin())) //Сожмем
         .pipe(gulpif(sm, sourcemaps.write()))
         .pipe(gulp.dest(path.build.css))
-        .pipe(notify("STYLE compiled: <%= file.relative %>!"));
+        .pipe(gutil.env.type !== 'ci' ? notify("STYLE compiled: <%= file.relative %>!") : gutil.noop());
 });
 
 gulp.task('image:build', function () {
