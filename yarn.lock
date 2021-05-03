@@ -2580,7 +2580,7 @@ gulp-autoprefixer@^7.0.1:
     through2 "^3.0.1"
     vinyl-sourcemaps-apply "^0.2.1"
 
-gulp-cli@^2.2.0:
+gulp-cli@^2.2.0, gulp-cli@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/gulp-cli/-/gulp-cli-2.3.0.tgz#ec0d380e29e52aa45e47977f0d32e18fd161122f"
   integrity sha512-zzGBl5fHo0EKSXsHzjspp3y5CONegCm8ErO5Qh0UzFzk2y4tMvzLWhoDokADbarfZRL2pGpRp7yt6gfJX4ph7A==
@@ -2659,7 +2659,7 @@ gulp-minify-css@^1.2.4:
     vinyl-bufferstream "^1.0.1"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-newer@^1.2.0:
+gulp-newer@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/gulp-newer/-/gulp-newer-1.4.0.tgz#25243ed6eac8f5462b95894e0d41937b112e65f3"
   integrity sha512-h79fGO55S/P9eAADbLAP9aTtVYpLSR1ONj08VPaSdVVNVYhTS8p1CO1TW7kEMu+hC+sytmCqcUr5LesvZEtDoQ==
@@ -2725,7 +2725,7 @@ gulp-sourcemaps@^3.0.0:
     strip-bom-string "^1.0.0"
     through2 "^2.0.0"
 
-gulp-uglify@^3.0.0:
+gulp-uglify@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/gulp-uglify/-/gulp-uglify-3.0.2.tgz#5f5b2e8337f879ca9dec971feb1b82a5a87850b0"
   integrity sha512-gk1dhB74AkV2kzqPMQBLA3jPoIAPd/nlNzP2XMDSG8XZrqnlCiDGAqC+rZOumzFvB5zOphlFh6yr3lgcAb/OOg==
