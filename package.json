@@ -18,7 +18,7 @@
     "gulp-notify": "^4.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-rigger": "^0.5.8",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp.spritesmith": "^6.11.0",
@@ -34,6 +34,6 @@
   },
   "homepage": "https://github.com/stden/stden.github.io#readme",
   "dependencies": {
-    "gulp-cli": "^2.3.0"
+    "gulp-cli": "^3.0.0"
   }
 }
