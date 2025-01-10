@@ -8,7 +8,7 @@
     "url": "git+https://github.com/stden/stden.github.io.git"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^7.1.0",
