@@ -34,6 +34,6 @@
   },
   "homepage": "https://github.com/stden/stden.github.io#readme",
   "dependencies": {
-    "gulp-cli": "^2.3.0"
+    "gulp-cli": "^3.0.0"
   }
 }
