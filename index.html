@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Landing Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="js/components.js"></script>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Денис Степулёнок</h1>
+                    <p class="text-xl mb-8">Разработчик и энтузиаст ИИ</p>
+                </div>
+                <div class="md:w-1/2 mt-8 md:mt-0">
+                    <img src="/api/placeholder/400/400" alt="Ваше фото" class="rounded-full mx-auto shadow-lg"/>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Utilities Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Браузерные утилиты</h2>
+            
+            <!-- JSON Formatter -->
+            <div class="mb-12 p-6 bg-white rounded-lg shadow-md" x-data="jsonFormatter">
+                <h3 class="text-xl font-semibold mb-4">JSON Форматер</h3>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="w-full md:w-1/2">
+                        <textarea 
+                            x-model="input"
+                            @input="validateInput"
+                            class="w-full h-64 p-4 border rounded-lg font-mono"
+                            placeholder="Вставьте JSON здесь..."></textarea>
+                        <div class="mt-4 flex gap-2">
+                            <button 
+                                @click="format"
+                                :disabled="!isValid"
+                                class="button"
+                                :class="{'opacity-50': !isValid}">
+                                Форматировать
+                            </button>
+                            <button @click="clear" class="button">Очистить</button>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <pre 
+                            x-text="output"
+                            class="h-64 p-4 bg-gray-100 rounded-lg overflow-auto font-mono"></pre>
+                        <button 
+                            x-show="output"
+                            @click="copyToClipboard(output)"
+                            class="mt-4 button">
+                            Копировать
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Base64 Converter -->
+            <div class="mb-12 p-6 bg-white rounded-lg shadow-md" x-data="base64Converter">
+                <h3 class="text-xl font-semibold mb-4">Base64 Конвертер</h3>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="w-full md:w-1/2">
+                        <textarea 
+                            x-model="plainText"
+                            class="w-full h-32 p-4 border rounded-lg font-mono mb-4"
+                            placeholder="Введите текст для кодирования..."></textarea>
+                        <div class="flex gap-2">
+                            <button 
+                                @click="encode"
+                                :disabled="!plainText"
+                                class="button"
+                                :class="{'opacity-50': !plainText}">
+                                Кодировать
+                            </button>
+                            <button @click="clearPlain" class="button">Очистить</button>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <textarea 
+                            x-model="encodedText"
+                            class="w-full h-32 p-4 border rounded-lg font-mono mb-4"
+                            placeholder="Base64 результат..."
+                            readonly></textarea>
+                        <div class="flex gap-2">
+                            <button 
+                                @click="decode"
+                                :disabled="!encodedText"
+                                class="button"
+                                :class="{'opacity-50': !encodedText}">
+                                Декодировать
+                            </button>
+                            <button 
+                                x-show="encodedText"
+                                @click="copyToClipboard(encodedText)"
+                                class="button">
+                                Копировать
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hash Generator -->
+            <div class="p-6 bg-white rounded-lg shadow-md" x-data="hashGenerator">
+                <h3 class="text-xl font-semibold mb-4">Генератор хэшей</h3>
+                <div class="mb-4">
+                    <input 
+                        type="text"
+                        x-model="input"
+                        class="w-full p-4 border rounded-lg"
+                        placeholder="Введите текст для хэширования...">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">MD5:</label>
+                        <input 
+                            type="text"
+                            x-model="md5Hash"
+                            class="w-full p-2 border rounded-lg bg-gray-50"
+                            readonly>
+                        <button 
+                            x-show="md5Hash"
+                            @click="copyToClipboard(md5Hash)"
+                            class="mt-2 button">
+                            Копировать MD5
+                        </button>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">SHA-256:</label>
+                        <input 
+                            type="text"
+                            x-model="sha256Hash"
+                            class="w-full p-2 border rounded-lg bg-gray-50"
+                            readonly>
+                        <button 
+                            x-show="sha256Hash"
+                            @click="copyToClipboard(sha256Hash)"
+                            class="mt-2 button">
+                            Копировать SHA-256
+                        </button>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button 
+                        @click="generateHashes"
+                        :disabled="!input"
+                        class="button"
+                        :class="{'opacity-50': !input}">
+                        Генерировать хэши
+                    </button>
+                    <button @click="clear" class="button">Очистить</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Container -->
+    <div 
+        x-data="toast"
+        @show-toast.window="show($event.detail.message, $event.detail.type)"
+        x-show="visible"
+        x-transition
+        :class="typeClasses"
+        class="fixed bottom-4 right-4 
